@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "Kabochi James",
+      "email": "Kabochij@gmail.com",
+      "type": "Super Admin",
+      "slug": "Kabochi"
+    },
+    {
+      "name": "Makeba Miriam",
+      "email": "miriamm@gmail.com",
+      "type": "Doctor",
+      "slug": "Makeba"
+    },
+    {
+      "name": "John Oliech",
+      "email": "oliech@yahoo.com",
+      "type": "Pharmacist",
+      "slug": "John"
+    }
+  ]
+}
