@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from '../services/main.service'
 import { SlugifyPipe } from '../shared/slugify.pipe';
 
@@ -11,22 +11,23 @@ import { SlugifyPipe } from '../shared/slugify.pipe';
 })
 export class AuthComponent implements OnInit {
 
-  public users = [];
+  // Declare Variables
+  public users: any[];
 
-  userRegister = new FormGroup({
-    name : new FormControl(''),
-    email : new FormControl(''),
-    type : new FormControl('')
+  // My Forms
+  userRegisterForm = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    title: new FormControl('', Validators.required)
   });
 
-  userLogin = new FormGroup({
-    name : new FormControl(''),
-    pass : new FormControl('')
-  });
 
   constructor(private mainService: MainService, private slugifyPipe: SlugifyPipe) { }
 
-  getUsers(){
+  // INITIALIZATION FUNCTIONS
+
+  // get users from local storage
+  getUsers() {
     this.users = this.mainService.getUsersLocalStorage();
     return this.users
 
@@ -34,27 +35,41 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
 
-      this.getUsers();
-
-  }
-
-  slugify(input: string){
-      var your_new_slug = this.slugifyPipe.transform(input);
-      return your_new_slug
-  }
-
-  onSubmit(){
-
-    let name = this.userRegister.controls['name'].value;
-    let email = this.userRegister.controls['email'].value;
-    let type = this.userRegister.controls['type'].value;
-    let slug = this.slugify(name);
-    let user = []
-    user.push({name:name, email:email, type:type, slug:slug})
-
-    this.mainService.registerUser(user);
-
+    // initialize initialization functions
     this.getUsers();
+
+  }
+
+  // OTHER FUNTIONS
+
+  // Function to create url friendly slugs
+  slugify(input: string) {
+    var your_new_slug = this.slugifyPipe.transform(input);
+    return your_new_slug
+  }
+
+
+  // Function after registration form is submitted
+  onSubmit() {
+    let username = this.userRegisterForm.controls['username'].value;
+    let email = this.userRegisterForm.controls['email'].value;
+    let title = this.userRegisterForm.controls['title'].value;
+    let slug = this.slugify(username);
+    let user = [];
+
+    if (this.userRegisterForm.invalid || title === '') {
+      return;
+
+    } else {
+
+      user.push({ username: username, email: email, title: title, slug: slug })
+      this.mainService.registerUser(user);
+      this.userRegisterForm.reset();
+
+      // get new users list
+      this.getUsers();
+    }
+
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from '../services/main.service'
 
 
@@ -12,41 +12,50 @@ import { MainService } from '../services/main.service'
 export class AuthDetailComponent implements OnInit {
 
   public slug: string;
-  public user;
+  public user: string;
 
 
-  constructor(private route: ActivatedRoute, private mainService: MainService) { }
 
   userEditForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    type: new FormControl('')
+    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    title: new FormControl('', Validators.required)
   });
 
 
-  getUsers() {
-    return this.mainService.getUsersLocalStorage();
+  constructor(private route: ActivatedRoute, private router: Router, private mainService: MainService) { }
+
+
+  getUser(slug) {
+    return this.mainService.getUser(slug);
   }
 
   ngOnInit() {
 
-    let users = this.getUsers();
     this.slug = this.route.snapshot.params['slug'];
-    this.user = users.find(slug => slug.slug === this.slug);
+    this.user = this.getUser(this.slug);
+
+    this.userEditForm.patchValue({
+      username: this.user.username,
+      email: this.user.email,
+      title: this.user.title,
+
+    });
 
 
   }
 
   onSubmitEdit() {
-    let name = this.userEditForm.controls['name'].value;
+    let username = this.userEditForm.controls['username'].value;
     let email = this.userEditForm.controls['email'].value;
-    let type = this.userEditForm.controls['type'].value;
+    let title = this.userEditForm.controls['title'].value;
     let slug = this.slug;
-    let user = [];
-    user.push({ name: name, email: email, type: type, slug: slug });
+    let _user = [];
+    _user.push({ username: username, email: email, title: title, slug: slug });
 
-    this.mainService.updateUser(user);
-
-
+    this.mainService.updateUser(_user);
+    this.router.navigate(['/auth']);
   }
+
+
 }

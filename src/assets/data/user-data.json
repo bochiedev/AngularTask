@@ -1,21 +1,21 @@
 {
   "users": [
     {
-      "name": "Kabochi James",
+      "username": "Kabochi James",
       "email": "Kabochij@gmail.com",
-      "type": "Super Admin",
+      "title": "Super Admin",
       "slug": "Kabochi"
     },
     {
-      "name": "Makeba Miriam",
+      "username": "Makeba Miriam",
       "email": "miriamm@gmail.com",
-      "type": "Doctor",
+      "title": "Doctor",
       "slug": "Makeba"
     },
     {
-      "name": "John Oliech",
+      "username": "John Oliech",
       "email": "oliech@yahoo.com",
-      "type": "Pharmacist",
+      "title": "Pharmacist",
       "slug": "John"
     }
   ]

@@ -2,18 +2,23 @@
 
   <div class="middle-box text-center loginscreen   animated fadeInDown">
         <div>
-            <h3>Edit User</h3>
+            <h3>Edit User - {{ user.username }}</h3>
             <form class="m-t" role="form" action="" [formGroup]="userEditForm" (ngSubmit)="onSubmitEdit()">
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="name" value="{{ user.name }}" required="">
+                    <input type="text" class="form-control" formControlName="username"  required="">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" formControlName="email" value="{{ user.email }}" required="">
+                    <input type="email" class="form-control" formControlName="email"  required="">
 
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="type" value="{{ user.type }}" required="">
-
+                    <select formControlName="title" class="form-control">
+                        <option value="" >Choose title</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Pharmacist">Pharmacist</option>
+                        <option value="Nurse">Nurse</option>
+                        <option value="Nurse">Patient</option>
+                    </select>
                 </div>
                 <button type="submit"  class="btn btn-primary block full-width m-b">Update</button>
 
