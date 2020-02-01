@@ -42,6 +42,7 @@ export class AuthDetailComponent implements OnInit {
     this.slug = this.route.snapshot.params['slug'];
     this.user = this.getUser(this.slug);
 
+
     // add user data to form values
 
     this.userEditForm.patchValue({
