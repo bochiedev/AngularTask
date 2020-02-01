@@ -10,4 +10,5 @@ Visit [demo](https://hire-me.bochie.co.ke) for a live demo.
 
 - Clone and change directory `Git clone https://github.com/bochiedev/AngularTask.git && cd AngularTask`.
 - Ensure you are on the branch kabochi `Git checkout kabochi`
+- Run `npm install`
 - Run `ng serve` for a dev server and Navigate to `http://localhost:4200/`.
