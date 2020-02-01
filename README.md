@@ -6,8 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Visit [demo](https://hire-me.bochie.co.ke) for a live demo.
 
-#How To Run The Project
+# How To Run The Project
 
-- Clone and cd into folder withe this command  `Git clone https://github.com/bochiedev/AngularTask.git && cd AngularTask` on your local machine.
-- Ensure you are on the branch kabochi  `Git checkout branch kabochi`
+- Clone and change directory `Git clone https://github.com/bochiedev/AngularTask.git && cd AngularTask`.
+- Ensure you are on the branch kabochi `Git checkout kabochi`
 - Run `ng serve` for a dev server and Navigate to `http://localhost:4200/`.
