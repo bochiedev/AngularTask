@@ -1,6 +1,6 @@
 export interface IUsers {
-  name: string,
+  username: string,
   email: string,
-  type: string
-
+  title: string,
+  slug: string,
 }

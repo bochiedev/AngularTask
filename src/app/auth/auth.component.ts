@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from '../services/main.service'
 import { SlugifyPipe } from '../shared/slugify.pipe';
 
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',

@@ -9,15 +9,20 @@ import { MainService } from '../services/main.service'
 })
 export class HomeComponent implements OnInit {
 
-  public users = [];
+  // Declare Variables
+
+  public users : any[];
 
   constructor(private mainService: MainService) { }
 
   ngOnInit() {
+
+    // get users from JSON FILE
     this.mainService.getUsersJson().subscribe(
       data =>{
         this.users = data['users'];
     });
+
   }
 
 }
